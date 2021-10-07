@@ -21,17 +21,17 @@ def twitter_status() -> list:
     tweet = str(d["best_tweet"])
     account = str(d["best_account"])
     if score <= -0.01:
-        info_score = "négatif :cloud: "
+        info_score = "negative :cloud: "
     elif score <= 0.12:
-        info_score = "neutre :white_sun_cloud:"
+        info_score = "neutral :white_sun_cloud:"
     else:
-        info_score = "positif :sunny:"
-    info = ["**__Analyse Twitter :bird: :__**",
-            "Meilleur compte twitter :arrow_right: " + account,
-            "Meilleur tweet :arrow_right: " + tweet,
-            "Sentiment global (30 derniers tweets):arrow_right: " + info_score,
+        info_score = "positive :sunny:"
+    info = ["**__Twitter analysis :bird: :__**",
+            "Best twitter account :arrow_right: " + account,
+            "Best tweet :arrow_right: " + tweet,
+            "Overall sentiment (last 30 tweets):arrow_right: " + info_score,
             "   ",
-            "**__Analyse des cours crypto : __**",]
+            "**__Crypto price analysis : __**",]
 
     return info
 
@@ -100,29 +100,29 @@ def get_data(symbol:str, interval : str, dict_symbol : dict) -> (list, bool):
         if MMC[i] >= MML[i]:
             STATUS.append("above")
             if MML[i] > MML[i-1] and df["Spread"][i] > df["Spread"][i-1]:
-                state = "Tendance à la hausse, vous pouvez acheter! (Attention c'est peut être trop TARD) :white_sun_cloud: "
+                state = "Upward trend, you can buy! (Attention it may be too LATE) :white_sun_cloud: "
             else:
-                state = "Attendez pour vendre... :cloud: "
+                state = "Wait to sell... :cloud: "
 
         elif MMC[i] < MML[i]:
             STATUS.append("below")
             if MML[i] > MML[i - 1] and df["Spread"][i] < df["Spread"][i-1]:
-                state = "Tendance à la hausse, vous pouvez acheter! (Attention c'est peut être trop TOT) :white_sun_cloud: "
+                state = "Upward trend, you can buy! (Be careful, it may be too much TOT) :white_sun_cloud: "
             else:
-                state = "Attendez pour acheter... :cloud: "
+                state = "Wait to Buy... :cloud: "
 
         if i > 0:
             if STATUS[i] != STATUS[i-1]:
                 if STATUS[i] == "above":
                     if df['MM_Volume'][i] >= 40 and MML[i] > MML[i - 1]:
-                        state = "Achetez aujourd'hui!! :sunny: "
+                        state = "Buy today!! :sunny: "
                     elif MML[i] > MML[i - 1]:
-                        state = "Vous pouvez achetez mais les volumes de sont pas élevés :sunny: "
+                        state = "You can buy but the volumes are not high :sunny: "
                     else:
-                        state = "Attendez :cloud: "
+                        state = "Wait :cloud: "
 
                 elif STATUS[i] == "below":
-                    state = "Vendez aujourd'hui!! :zap: "
+                    state = "Sell today!! :zap: "
 
         df['Status'][i] = state
     success = True
@@ -149,7 +149,9 @@ def get_status(interval :str, tweet :bool) -> str:
             "CAKECOIN": 'CAKEUSDT',
             "BNB": "BNBUSDT",
             "VET": "VETUSDT",
-            "ADA": "ADAUSDT"}
+            "ADA": "ADAUSDT",
+            "AVALANCHE": "AVAXUSDT",
+            "SHIBA": "SHIBUSDT"}
 
     for i in range(0, len(dict_symbol.items())):
         symbol = list(dict_symbol.keys())[i]
