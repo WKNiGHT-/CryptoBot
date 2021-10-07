@@ -3,8 +3,11 @@
 Create .env and add the follwing info for Discord
 
 TOKEN_BOT=
+
 channel_general=
+
 daily_crypto=
+
 weekly_crypto=
 
 ## Principle
