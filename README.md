@@ -1,4 +1,12 @@
 # Crypto Bot Documention  
+## Create files
+Create .env and add the follwing info for Discord
+
+TOKEN_BOT=
+channel_general=
+daily_crypto=
+weekly_crypto=
+
 ## Principle
 This project is based on sentiment analysis on twitter + algorithm based on the moving average algorithm.
 The first step of this algorithm is to create two curves :
