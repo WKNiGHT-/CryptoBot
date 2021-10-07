@@ -36,13 +36,13 @@ def get_crypto_info(interval : str, tweet: bool):
     info = '\n'.join(messages)
     return info
   else:
-    info = ["Alerte(s) direct !"]
+    info = ["Alert(s) direct !"]
     for message in messages:
-      if "Achetez aujourd'hui!! :sunny: " in message:
-        message = message.replace("aujourd'hui", "tout de suite")
+      if "Buy Today!! :sunny: " in message:
+        message = message.replace("today", "right away")
         info.append(message)
-      elif "Vendez aujourd'hui!! :zap: " in message:
-        message = message.replace("aujourd'hui", "tout de suite")
+      elif "Sell Today!! :zap: " in message:
+        message = message.replace("today", "right away")
         info.append(message)
     info = '\n'.join(info)
 
@@ -64,14 +64,14 @@ async def on_ready():
     if str(current_time_day) == "06:30:00": #2 hours of delay
       info = get_crypto_info('1d', True)
       channel = client.get_channel(int(weekly_crypto))
-      await channel.send("Tendance du jour #1")
+      await channel.send("Trend of the day #1")
       await channel.send(info)
 
     #EVENING
     elif str(current_time_day) == "17:30:30": #2 hours of delay
       info = get_crypto_info('1d', True)
       channel = client.get_channel(int(weekly_crypto))
-      await channel.send("Tendance du jour #2")
+      await channel.send("Trend of the day #2")
       await channel.send(info)
 
     elif str(current_time) == "00:00": #Every Hours
